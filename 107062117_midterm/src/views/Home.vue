@@ -530,7 +530,7 @@ export default {
         this.event_below = false;
       }
 
-      var y_value = [900, 1050, 1200, 1350, 1500, 1650, 1800];
+      var y_value = [700, 850, 1000, 1150, 1300, 1450, 1600];
       var i = 0;
       oevents.forEach((element) => {
         if (!this.oevent_below[i]) {

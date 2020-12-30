@@ -117,6 +117,9 @@
 .el-menu.el-menu--horizontal {
   border: none;
   font-family: "ZCOOL QingKe HuangYou", "Sue Ellen Francisco", cursive;
+  position: fixed;
+  z-index: 99999;
+  width: 100%;
 }
 </style>
 <script>
