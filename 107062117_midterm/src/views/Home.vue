@@ -1,7 +1,103 @@
 <template>
   <div class="home align-column-center">
+    <el-menu
+      class="el-menu align-self-start"
+      mode="horizontal"
+      @select="handleSelect"
+      background-color="#14072F"
+      text-color="rgba(255, 255, 255, 0.7)"
+      active-text-color="rgba(255, 255, 255, 1)"
+    >
+      <el-submenu index="1">
+        <template slot="title">Home</template>
+        <el-submenu index="2">
+          <template slot="title">關於學院</template>
+          <el-menu-item index="2-1"
+            ><a href="https://art.nthu.edu.tw/?page_id=51" target="_blank"
+              >學院簡介</a
+            ></el-menu-item
+          >
+          <el-menu-item index="2-2"
+            ><a href="https://art.nthu.edu.tw/?page_id=54" target="_blank"
+              >未來展望</a
+            ></el-menu-item
+          >
+          <el-menu-item index="2-3"
+            ><a href="http://oga.nthu.edu.tw/school2.php" target="_blank"
+              >姐妹學校</a
+            ></el-menu-item
+          >
+        </el-submenu>
+        <el-submenu index="3">
+          <template slot="title">學院師資</template>
+          <el-menu-item index="3-1"
+            ><a href="https://art.nthu.edu.tw/?page_id=819" target="_blank"
+              >榮譽院長</a
+            ></el-menu-item
+          >
+          <el-menu-item index="3-2"
+            ><a href="https://art.nthu.edu.tw/?page_id=893" target="_blank"
+              >歷任院長</a
+            ></el-menu-item
+          >
+          <el-menu-item index="3-3"
+            ><a href="https://art.nthu.edu.tw/?page_id=143" target="_blank"
+              >現任院長/行政人員</a
+            ></el-menu-item
+          >
+          <el-menu-item index="3-4"
+            ><a href="http://music.site.nthu.edu.tw/?Lang=zh-tw" target="_blank"
+              >音樂系專兼任師資</a
+            ></el-menu-item
+          >
+          <el-menu-item index="3-5"
+            ><a
+              href="http://artdesign.site.nthu.edu.tw/?Lang=zh-tw"
+              target="_blank"
+              >藝設系專兼任師資</a
+            ></el-menu-item
+          >
+          <el-menu-item index="3-6"
+            ><a href="http://ipta.nthu.edu.tw/?page_id=30" target="_blank"
+              >學士班專兼任師資</a
+            ></el-menu-item
+          >
+        </el-submenu>
+        <el-submenu index="4">
+          <template slot="title">榮譽榜</template>
+          <el-menu-item index="4-1"
+            ><a href="https://art.nthu.edu.tw/?page_id=1445" target="_blank"
+              >教師獲獎</a
+            ></el-menu-item
+          >
+          <el-menu-item index="4-2"
+            ><a href="https://art.nthu.edu.tw/?page_id=1855" target="_blank"
+              >春之獎學金</a
+            ></el-menu-item
+          >
+          <el-menu-item index="4-3"
+            ><a href="https://art.nthu.edu.tw/?page_id=1858" target="_blank"
+              >春之卓越獎</a
+            ></el-menu-item
+          >
+          <el-menu-item index="4-4"
+            ><a href="https://art.nthu.edu.tw/?page_id=269" target="_blank"
+              >學生獲獎</a
+            ></el-menu-item
+          >
+        </el-submenu>
+        <el-submenu index="5">
+          <template slot="title">活動花絮</template>
+          <el-menu-item index="5-1"
+            ><a href="https://art.nthu.edu.tw/?page_id=130" target="_blank"
+              >國際交流</a
+            ></el-menu-item
+          >
+        </el-submenu>
+      </el-submenu>
+    </el-menu>
     <div class="banner align-column-center slide-down">
-      <img class="img-100vw" src="../assets/banner3.png" alt="banner" />
+      <img class="img-100vw" src="../assets/banner.png" alt="banner" />
     </div>
     <div class="content align-column-center">
       <div
@@ -39,8 +135,9 @@
             v-for="(item, index) in oEvents"
             :key="index"
             :class="item.color"
+            v-on:click="redirect(index)"
           >
-            <a v-bind:href="item.link" target="_blank">{{ item.label }}</a>
+            {{ item.label }}
           </div>
         </div>
       </div>
@@ -65,8 +162,9 @@
           class="margin-left-right margin-top-bottom-5px font-14px"
           v-bind:href="item.link"
           target="_blank"
-          >{{ item.name }}</a
         >
+          {{ item.name }}
+        </a>
       </div>
       <div class="copyright align-column-center margin-top-bottom">
         <p>國立清華大學藝術學院 Tel:+886-3-5715131 #78801</p>
@@ -75,12 +173,14 @@
     </div>
   </div>
 </template>
-<style>
+<style scoped>
 html,
 body {
   margin: 0px;
   background-color: #14072f;
   color: rgba(255, 255, 255, 0.7);
+  line-height: 24px;
+  letter-spacing: 3px;
 }
 a {
   color: rgba(255, 255, 255, 0.6);
@@ -178,11 +278,11 @@ a:hover {
 .o-event {
   width: 100%;
   height: 150px;
-  /* background-color: rgba(128, 142, 216, 0.72); */
   background: rgba(57, 69, 130, 0.72);
   align-items: center;
   position: relative;
   font-size: 18px;
+  cursor: pointer;
 }
 .o-event:hover {
   animation: bounce 1s;
@@ -369,6 +469,13 @@ a:hover {
     transform: translateY(0%);
   }
 }
+.el-menu.el-menu--horizontal {
+  border: none;
+  font-family: "ZCOOL QingKe HuangYou", "Sue Ellen Francisco", cursive;
+  position: fixed;
+  z-index: 99999;
+  width: 100%;
+}
 </style>
 
 <script>
@@ -376,6 +483,7 @@ export default {
   name: "Home",
   data() {
     return {
+      activeIndex: "1",
       events: [
         {
           src: require("@/assets/timthumb.png"),
@@ -429,22 +537,22 @@ export default {
       oEvents: [
         {
           label: "藝設系",
-          link: "http://artdesign.site.nthu.edu.tw/?Lang=zh-tw",
+          link: "../views/page1.vue",
           color: "red",
         },
         {
           label: "音樂系",
-          link: "http://music.site.nthu.edu.tw/?Lang=zh-tw",
+          link: "../views/page2.vue",
           color: "orange",
         },
         {
           label: "科技藝術學院學士班",
-          link: "http://ipta.nthu.edu.tw/",
+          link: "../views/page3.vue",
           color: "yellow",
         },
         {
           label: "藝術與創新科技碩士學程",
-          link: "http://aet.web.nthu.edu.tw/",
+          link: "../views/page4.vue",
           color: "green",
         },
         {
@@ -492,7 +600,6 @@ export default {
 
   methods: {
     directTo(str) {
-      console.log(str);
       if (str == "facebook")
         window.location.href = "https://www.facebook.com/nthuarts";
       else if (str == "email") {
@@ -510,6 +617,26 @@ export default {
           "attach=" +
           attach;
       } else window.location.href = "https://twitter.com/twitter";
+    },
+    redirect(index) {
+      console.log(index);
+      switch (index) {
+        case 0:
+          this.$router.push("/page1");
+          break;
+        case 1:
+          this.$router.push("/page2");
+          break;
+        case 2:
+          this.$router.push("/page3");
+          break;
+        case 3:
+          this.$router.push("/page4");
+          break;
+      }
+    },
+    handleSelect(key, keyPath) {
+      console.log(key, keyPath);
     },
 
     eventScroll() {
