@@ -23,11 +23,41 @@
                 class="dropdown-menu"
                 aria-labelledby="navbarDropdownMenuLink"
               >
-                <li><a class="dropdown-item" href="#">介紹影片</a></li>
-                <li><a class="dropdown-item" href="#">系所特色</a></li>
-                <li><a class="dropdown-item" href="#">課程地圖</a></li>
-                <li><a class="dropdown-item" href="#">規章辦法</a></li>
-                <li><a class="dropdown-item" href="#">表單下載</a></li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="https://drive.google.com/file/d/1d7Ih2bWnIdtegdJip8UJQI9tNZgTOZZk/view"
+                    >介紹影片</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="http://artdesign.site.nthu.edu.tw/p/412-1104-12584.php?Lang=zh-tw"
+                    >系所特色</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="http://artdesign.site.nthu.edu.tw/p/412-1104-16736.php?Lang=zh-tw"
+                    >課程地圖</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="http://artdesign.site.nthu.edu.tw/p/412-1104-12585.php?Lang=zh-tw"
+                    >規章辦法</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="http://artdesign.site.nthu.edu.tw/p/412-1104-13704.php?Lang=zh-tw"
+                    >表單下載</a
+                  >
+                </li>
               </ul>
             </li>
             <li class="nav-item dropdown">
@@ -45,9 +75,27 @@
                 class="dropdown-menu"
                 aria-labelledby="navbarDropdownMenuLink"
               >
-                <li><a class="dropdown-item" href="#">專任師資</a></li>
-                <li><a class="dropdown-item" href="#">兼任師資</a></li>
-                <li><a class="dropdown-item" href="#">行政助教</a></li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="http://artdesign.site.nthu.edu.tw/p/412-1104-12568.php?Lang=zh-tw"
+                    >專任師資</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="http://artdesign.site.nthu.edu.tw/p/412-1104-12569.php?Lang=zh-tw"
+                    >兼任師資</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="http://artdesign.site.nthu.edu.tw/p/412-1104-12570.php?Lang=zh-tw"
+                    >行政助教</a
+                  >
+                </li>
               </ul>
             </li>
             <li class="nav-item dropdown">
@@ -66,12 +114,26 @@
                 aria-labelledby="navbarDropdownMenuLink"
               >
                 <li>
-                  <a class="dropdown-item" href="#"
+                  <a
+                    class="dropdown-item"
+                    href="http://artdesign.site.nthu.edu.tw/p/412-1104-12587.php?Lang=zh-tw"
                     >李澤藩教授美勞教育獎學金歷年得獎作品</a
                   >
                 </li>
-                <li><a class="dropdown-item" href="#">校內外競賽獲獎</a></li>
-                <li><a class="dropdown-item" href="#">新一代設計展</a></li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="http://artdesign.site.nthu.edu.tw/p/412-1104-12588.php?Lang=zh-tw"
+                    >校內外競賽獲獎</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="http://artdesign.site.nthu.edu.tw/p/412-1104-13946.php?Lang=zh-tw"
+                    >新一代設計展</a
+                  >
+                </li>
               </ul>
             </li>
             <li class="nav-item dropdown">
@@ -252,18 +314,18 @@ body {
   letter-spacing: 3px;
 }
 .button {
-  background: linear-gradient(
+  /* background: linear-gradient(
     0deg,
     rgba(170, 169, 245, 0.6) 0%,
     rgba(89, 78, 242, 0.6) 100%
-  );
-  color: #fff;
+  ); */
+  background: rgba(170, 169, 245, 0.6);
   border: 0px;
   border-radius: 10px;
   text-align: center;
   width: 100px;
   height: 40px;
-  border-bottom: 5px solid rgba(109, 130, 233, 0.8);
+  border-bottom: 5px solid rgba(107, 97, 247, 0.6);
 }
 .button:hover {
   animation: button-down 0.3s;

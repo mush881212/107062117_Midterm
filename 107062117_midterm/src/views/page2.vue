@@ -23,12 +23,48 @@
                 class="dropdown-menu"
                 aria-labelledby="navbarDropdownMenuLink"
               >
-                <li><a class="dropdown-item" href="#">系所成員</a></li>
-                <li><a class="dropdown-item" href="#">硬體設備</a></li>
-                <li><a class="dropdown-item" href="#">教學目標</a></li>
-                <li><a class="dropdown-item" href="#">樂團資訊</a></li>
-                <li><a class="dropdown-item" href="#">學士班</a></li>
-                <li><a class="dropdown-item" href="#">碩士班</a></li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="http://music.site.nthu.edu.tw/p/412-1113-1.php?Lang=zh-tw"
+                    >系所成員</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="http://music.site.nthu.edu.tw/p/412-1113-25.php?Lang=zh-tw"
+                    >硬體設備</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="http://music.site.nthu.edu.tw/p/412-1113-2164.php?Lang=zh-tw"
+                    >教學目標</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="http://music.site.nthu.edu.tw/p/412-1113-51.php?Lang=zh-tw"
+                    >樂團資訊</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="http://music.site.nthu.edu.tw/p/412-1113-53.php?Lang=zh-tw"
+                    >學士班</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="http://music.site.nthu.edu.tw/p/412-1113-54.php?Lang=zh-tw"
+                    >碩士班</a
+                  >
+                </li>
               </ul>
             </li>
             <li class="nav-item dropdown">
@@ -46,11 +82,41 @@
                 class="dropdown-menu"
                 aria-labelledby="navbarDropdownMenuLink"
               >
-                <li><a class="dropdown-item" href="#">學士班</a></li>
-                <li><a class="dropdown-item" href="#">碩士班</a></li>
-                <li><a class="dropdown-item" href="#">轉學考</a></li>
-                <li><a class="dropdown-item" href="#">歷屆試題</a></li>
-                <li><a class="dropdown-item" href="#">選考科目書單</a></li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="http://music.site.nthu.edu.tw/p/412-1113-32.php?Lang=zh-tw"
+                    >學士班</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="http://music.site.nthu.edu.tw/p/412-1113-33.php?Lang=zh-tw"
+                    >碩士班</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="http://music.site.nthu.edu.tw/p/412-1113-12761.php?Lang=zh-tw"
+                    >轉學考</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="http://music.site.nthu.edu.tw/p/412-1113-12771.php?Lang=zh-tw"
+                    >歷屆試題</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="http://music.site.nthu.edu.tw/p/412-1113-2271.php?Lang=zh-tw"
+                    >選考科目書單</a
+                  >
+                </li>
               </ul>
             </li>
             <li class="nav-item dropdown">
@@ -68,8 +134,20 @@
                 class="dropdown-menu"
                 aria-labelledby="navbarDropdownMenuLink"
               >
-                <li><a class="dropdown-item" href="#">場地管理</a></li>
-                <li><a class="dropdown-item" href="#">相關條文</a></li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="http://music.site.nthu.edu.tw/p/412-1113-50.php?Lang=zh-tw"
+                    >場地管理</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="http://music.site.nthu.edu.tw/p/412-1113-78.php?Lang=zh-tw"
+                    >相關條文</a
+                  >
+                </li>
               </ul>
             </li>
             <li class="nav-item dropdown">
@@ -466,7 +544,7 @@ export default {
   methods: {
     eventScroll() {
       this.fadeIn();
-      if (window.scrollY > 100 && !this.isPlaying) {
+      if (window.scrollY > 10 && !this.isPlaying) {
         this.isPlaying = true;
         var textWrapper = document.querySelector(".ml6 .letters");
         textWrapper.innerHTML = textWrapper.textContent.replace(
@@ -495,7 +573,7 @@ export default {
     },
     fadeIn() {
       var events = document.getElementsByClassName("event");
-      if (window.scrollY >= 100 && !this.event_below) {
+      if (window.scrollY >= 10 && !this.event_below) {
         events.forEach((element) => {
           element.classList.remove("invisible");
           element.classList.add("fade-in");

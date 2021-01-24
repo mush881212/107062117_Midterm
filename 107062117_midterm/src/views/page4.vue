@@ -17,17 +17,22 @@
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                本系簡介
+                學程
               </a>
               <ul
                 class="dropdown-menu"
                 aria-labelledby="navbarDropdownMenuLink"
               >
-                <li><a class="dropdown-item" href="#">介紹影片</a></li>
-                <li><a class="dropdown-item" href="#">系所特色</a></li>
-                <li><a class="dropdown-item" href="#">課程地圖</a></li>
-                <li><a class="dropdown-item" href="#">規章辦法</a></li>
-                <li><a class="dropdown-item" href="#">表單下載</a></li>
+                <li>
+                  <a class="dropdown-item" href="http://aet.web.nthu.edu.tw/"
+                    >學程介紹</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="http://aet.web.nthu.edu.tw/"
+                    >修業規定</a
+                  >
+                </li>
               </ul>
             </li>
             <li class="nav-item dropdown">
@@ -39,15 +44,17 @@
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                系所成員
+                師資
               </a>
               <ul
                 class="dropdown-menu"
                 aria-labelledby="navbarDropdownMenuLink"
               >
-                <li><a class="dropdown-item" href="#">專任師資</a></li>
-                <li><a class="dropdown-item" href="#">兼任師資</a></li>
-                <li><a class="dropdown-item" href="#">行政助教</a></li>
+                <li>
+                  <a class="dropdown-item" href="http://aet.web.nthu.edu.tw/"
+                    >學士班跨域專、 兼師資</a
+                  >
+                </li>
               </ul>
             </li>
             <li class="nav-item dropdown">
@@ -59,58 +66,26 @@
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                獲獎成果
+                工作坊
               </a>
               <ul
                 class="dropdown-menu"
                 aria-labelledby="navbarDropdownMenuLink"
               >
                 <li>
-                  <a class="dropdown-item" href="#"
-                    >李澤藩教授美勞教育獎學金歷年得獎作品</a
-                  >
-                </li>
-                <li><a class="dropdown-item" href="#">校內外競賽獲獎</a></li>
-                <li><a class="dropdown-item" href="#">新一代設計展</a></li>
-              </ul>
-            </li>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                id="navbarDropdownMenuLink"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                藝術空間
-              </a>
-              <ul
-                class="dropdown-menu"
-                aria-labelledby="navbarDropdownMenuLink"
-              >
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="https://nthuartspace.wixsite.com/chushih-artspace"
-                    >竹師藝術空間</a
+                  <a class="dropdown-item" href="http://aet.web.nthu.edu.tw/"
+                    >清華BB8大會串</a
                   >
                 </li>
                 <li>
-                  <a
-                    class="dropdown-item"
-                    href="https://nthuartspace.wixsite.com/chushih-artspace"
+                  <a class="dropdown-item" href="http://aet.web.nthu.edu.tw/"
+                    >3D Printer DIY 工作坊</a
                   >
-                    竹師藝術空間2館
-                  </a>
                 </li>
                 <li>
-                  <a
-                    class="dropdown-item"
-                    href="https://nthuartspace.wixsite.com/chushih-artspace"
+                  <a class="dropdown-item" href="http://aet.web.nthu.edu.tw/"
+                    >Fablab怪怪桌工作坊</a
                   >
-                    澤藝術空間
-                  </a>
                 </li>
               </ul>
             </li>
