@@ -223,7 +223,7 @@
         <div class="hr margin-top-bottom"></div>
         <div class="events-container align-row-center">
           <div
-            class="event align-row-center padding-30px invisible"
+            class="events-1 align-row-center padding-30px fade-in"
             v-for="(item, index) in events"
             :key="index"
           >
@@ -307,14 +307,14 @@ a:hover {
   overflow: hidden;
 }
 
-.event {
+.events-1 {
   background: rgba(29, 35, 65, 0.6);
   width: 100%;
   height: 80px;
   border-radius: 0px;
 }
 
-.event:hover {
+.events-1:hover {
   box-shadow: 0 0 10px rgba(167, 189, 250, 0.72),
     0 0 20px rgba(167, 181, 250, 0.72), 0px 0px 30px rgba(167, 181, 250, 0.72);
   transition: all 0.5s ease-out;
@@ -572,7 +572,7 @@ export default {
       }
     },
     fadeIn() {
-      var events = document.getElementsByClassName("event");
+      var events = document.getElementsByClassName("events-1");
       if (window.scrollY >= 10 && !this.event_below) {
         events.forEach((element) => {
           element.classList.remove("invisible");
