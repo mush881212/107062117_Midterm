@@ -588,17 +588,17 @@ export default {
       var item1 = document.getElementById("intro-item-1");
       var item2 = document.getElementById("intro-item-2");
       var item3 = document.getElementById("intro-item-3");
-      if (window.scrollY >= 1000) {
+      if (window.scrollY >= 1300) {
         this.fadeOut(item3);
         this.item_below3 = true;
-      } else if (window.scrollY < 1000) {
+      } else if (window.scrollY < 1300) {
         this.removeFadeOut(item3);
         this.item_below3 = false;
       }
-      if (window.scrollY >= 800) {
+      if (window.scrollY >= 1000) {
         this.fadeOut(item2);
         this.item_below2 = true;
-      } else if (window.scrollY < 800) {
+      } else if (window.scrollY < 1000) {
         this.removeFadeOut(item2);
         this.item_below2 = false;
       }

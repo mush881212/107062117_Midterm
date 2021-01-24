@@ -135,7 +135,6 @@
       <img class="img-100vw" src="../assets/banner2.png" alt="banner" />
     </div>
     <div class="content align-column-center">
-      <div class="slide"></div>
       <!------------------------------->
       <div class="recently-event padding-30px align-column-start">
         <h1 class="ml6">
@@ -203,6 +202,24 @@ a:hover {
   width: 100%;
   height: 1px;
   border-top: 1px solid rgba(176, 187, 245, 0.6);
+}
+.button {
+  background-color: rgba(70, 89, 182, 0.6);
+  color: #fff;
+  border: 0px;
+  border-radius: 10px;
+  text-align: center;
+  width: 100px;
+  height: 40px;
+  margin: 0px 5px 0px 5px;
+  border-bottom: 5px solid rgba(70, 89, 182, 0.8);
+}
+.button:hover {
+  animation: button-down 0.3s;
+  transition: all 0.1s ease-out;
+  -webkit-transform: translateY(10%);
+  transform: translateY(10%);
+  border-bottom: 0px solid rgba(70, 89, 182, 0.8);
 }
 
 .banner {

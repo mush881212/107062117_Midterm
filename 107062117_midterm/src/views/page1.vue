@@ -123,7 +123,41 @@
       <img class="img-100vw" src="../assets/banner1.png" alt="banner" />
     </div>
     <div class="content align-column-center">
-      <div class="slide"></div>
+      <div class="slide-container padding-30px align-column-center">
+        <h1 class="ml6_2 align-self-start">
+          <span class="text-wrapper">
+            <span class="letters label">藝廊 Gallery</span>
+          </span>
+        </h1>
+        <div class="hr margin-top-bottom"></div>
+        <div class="slide-content padding-15px">
+          <vue-glide
+            :autoplay="false"
+            :perView="1"
+            :animationDuration="3000"
+            :rewindDuration="800"
+          >
+            <vue-glide-slide
+              class="slide align-column-center"
+              v-for="(item, index) in slides"
+              :key="index"
+            >
+              <p class="margin-5px-8px">
+                {{ item.author }} 《{{ item.name }}》
+              </p>
+              <img
+                class="img-80"
+                v-bind:src="item.src"
+                v-bind:alt="item.name"
+              />
+            </vue-glide-slide>
+            <template slot="control" class="button-container">
+              <button class="button" data-glide-dir="<">prev</button>
+              <button class="button" data-glide-dir=">">next</button>
+            </template>
+          </vue-glide>
+        </div>
+      </div>
       <!---------------------------->
       <div class="recently-event padding-30px align-column-start">
         <h1 class="ml6">
@@ -151,7 +185,7 @@
       <div class="gallery align-column-center padding-30px">
         <h1 class="ml6_1 align-self-end">
           <span class="text-wrapper">
-            <span class="letters label">藝術空間 Gallery</span>
+            <span class="letters label">藝術空間 Art area</span>
           </span>
         </h1>
         <div class="hr"></div>
@@ -213,8 +247,27 @@ body {
   line-height: 24px;
   letter-spacing: 3px;
 }
+.button-container .button {
+  background-color: rgba(70, 72, 167, 1);
+  color: #fff;
+  border: 0px;
+  border-radius: 10px;
+  text-align: center;
+  width: 100px;
+  height: 40px;
+  margin: 0px 20px 0px 20px;
+  border-bottom: 5px solid rgba(70, 89, 182, 0.8);
+}
+.button-container .button:hover {
+  animation: button-down 0.3s;
+  transition: all 0.1s ease-out;
+  -webkit-transform: translateY(10%);
+  transform: translateY(10%);
+  border-bottom: 0px solid rgba(70, 89, 182, 0.8);
+}
 .ml6,
-.ml6_1 {
+.ml6_1,
+.ml6_2 {
   position: relative;
 }
 
@@ -380,6 +433,20 @@ a:hover {
 .img-100vw {
   width: 100vw;
 }
+.img-80 {
+  width: 60%;
+  max-height: 90%;
+}
+.slide-container {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.slide-content {
+  width: 50%;
+  height: 400px;
+  background-color: rgba(167, 181, 250, 0.4);
+  border-radius: 10px;
+}
 .align-column-center {
   display: flex;
   flex-direction: column;
@@ -467,6 +534,18 @@ a:hover {
     transform: translateY(0%);
   }
 }
+@keyframes button-down {
+  0% {
+    -webkit-transform: translateY(0%);
+    transform: translateY(0%);
+    border-bottom: 5px solid rgba(70, 89, 182, 0.8);
+  }
+  100% {
+    -webkit-transform: translateY(10%);
+    transform: translateY(10%);
+    border-bottom: 0px solid rgba(70, 89, 182, 0.8);
+  }
+}
 .flip-card {
   perspective: 1000px; /* Remove this if you don't want the 3D effect */
   height: 450px;
@@ -507,6 +586,7 @@ a:hover {
 </style>
 
 <script>
+import { Glide, GlideSlide } from "vue-glide-js";
 export default {
   name: "Page1",
   data() {
@@ -575,7 +655,37 @@ export default {
       ],
       isPlaying: false,
       isPlaying1: false,
+      isPlaying2: false,
       event_below: false,
+      [Glide.name]: "獲獎紀錄",
+      [GlideSlide.name]: "GlideSlide",
+      slides: [
+        {
+          name: "苞藏 / Hiden",
+          src: require("@/assets/page1/img1_1.jpg"),
+          author: "許馨文",
+        },
+        {
+          name: "幸福的青鳥IV",
+          src: require("@/assets/page1/img2_1.jpg"),
+          author: "蔡函庭",
+        },
+        {
+          name: "時間",
+          src: require("@/assets/page1/img3_1.jpg"),
+          author: "陳珊珊",
+        },
+        {
+          name: "群聚關係",
+          src: require("@/assets/page1/img4_1.jpg"),
+          author: "張巧妤",
+        },
+        {
+          name: "頂樓的發光搖擺-3",
+          src: require("@/assets/page1/img5_1.jpg"),
+          author: "林君晏",
+        },
+      ],
     };
   },
   created() {
@@ -586,7 +696,33 @@ export default {
   methods: {
     eventScroll() {
       this.fadeIn();
-      if (window.scrollY > 100 && !this.isPlaying) {
+      if (window.scrollY > 10 && !this.isPlaying2) {
+        this.isPlaying2 = true;
+        var textWrapper2 = document.querySelector(".ml6_2 .letters");
+        textWrapper2.innerHTML = textWrapper2.textContent.replace(
+          /\S/g,
+          "<span class='letter'>$&</span>"
+        );
+        this.$anime
+          .timeline({ loop: false })
+          .add({
+            targets: ".ml6_2 .letter",
+            translateY: ["1.1em", 0],
+            translateZ: 0,
+            duration: 1500,
+            delay: (el, i) => 50 * i,
+          })
+          .add({
+            targets: ".ml6_2",
+            opacity: 1,
+            duration: 1000,
+            easing: "easeOutExpo",
+            delay: 1000,
+          });
+      } else if (window.scrollY < 10) {
+        this.isPlaying2 = false;
+      }
+      if (window.scrollY > 600 && !this.isPlaying) {
         this.isPlaying = true;
         var textWrapper = document.querySelector(".ml6 .letters");
         textWrapper.innerHTML = textWrapper.textContent.replace(
@@ -609,11 +745,11 @@ export default {
             easing: "easeOutExpo",
             delay: 1000,
           });
-      } else if (window.scrollY < 10) {
+      } else if (window.scrollY < 600) {
         this.isPlaying = false;
       }
 
-      if (window.scrollY >= 600 && !this.isPlaying1) {
+      if (window.scrollY >= 1200 && !this.isPlaying1) {
         this.isPlaying1 = true;
         var textWrapper1 = document.querySelector(".ml6_1 .letters");
         textWrapper1.innerHTML = textWrapper1.textContent.replace(
@@ -636,19 +772,19 @@ export default {
             easing: "easeOutExpo",
             delay: 1000,
           });
-      } else if (window.scrollY < 600) {
+      } else if (window.scrollY < 1200) {
         this.isPlaying1 = false;
       }
     },
     fadeIn() {
       var events = document.getElementsByClassName("event");
-      if (window.scrollY >= 100 && !this.event_below) {
+      if (window.scrollY >= 600 && !this.event_below) {
         events.forEach((element) => {
           element.classList.remove("invisible");
           element.classList.add("fade-in");
         });
         this.event_below = true;
-      } else if (window.scrollY < 10) {
+      } else if (window.scrollY < 600) {
         events.forEach((element) => {
           element.classList.add("invisible");
           element.classList.remove("fade-in");

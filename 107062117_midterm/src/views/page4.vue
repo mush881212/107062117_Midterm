@@ -247,37 +247,6 @@ a:hover {
 .description {
   font-size: 15px;
 }
-.outside-web {
-  width: 100vw;
-  background-image: linear-gradient(
-    0,
-    rgba(255, 255, 255, 0.3),
-    rgba(70, 72, 167, 0.3)
-  );
-}
-.o-container {
-  border: rgba(255, 255, 255, 0.6);
-  width: 90%;
-  border-radius: 20px;
-  overflow: hidden;
-}
-.o-container::-webkit-scrollbar {
-  display: none;
-}
-
-.o-event {
-  width: 100%;
-  height: 150px;
-  /* background-color: rgba(128, 142, 216, 0.72); */
-  background: rgba(57, 69, 130, 0.72);
-  align-items: center;
-  position: relative;
-  font-size: 18px;
-}
-.o-event:hover {
-  animation: bounce 1s;
-  transition: all 0.3s ease-out;
-}
 
 .align-self-end {
   align-self: flex-end;
@@ -286,10 +255,6 @@ a:hover {
   align-self: flex-start;
 }
 
-.others {
-  width: 60%;
-  flex-direction: row-reverse;
-}
 .copyright {
   width: 100%;
   color: rgba(255, 255, 255, 0.6);
