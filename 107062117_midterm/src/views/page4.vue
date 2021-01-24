@@ -209,7 +209,7 @@ a:hover {
 }
 .events-container {
   width: 100%;
-  height: 500px;
+  height: 100%;
   overflow-y: scroll;
   scrollbar-width: none;
   border-radius: 10px;

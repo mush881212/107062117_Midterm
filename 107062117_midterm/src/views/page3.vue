@@ -293,7 +293,12 @@ a:hover {
 .intro-item:hover {
   transform: scale(1.05);
   transition: all 0.2s ease-out;
-  background: rgba(29, 35, 65, 0.5);
+  /* background: rgba(29, 35, 65, 0.8); */
+  background: linear-gradient(
+    0deg,
+    rgba(122, 121, 235, 0.8) 0%,
+    rgba(68, 60, 175, 0.8) 100%
+  );
 }
 
 .recent-event {
