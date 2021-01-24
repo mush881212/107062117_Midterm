@@ -1,5 +1,5 @@
 <template>
-  <div class="home align-column-center">
+  <div class="page1 align-column-center">
     <nav
       class="navbar navbar-expand-lg navbar-dark fixed-top font-14px"
       style="background-color: #14072f"
@@ -126,11 +126,15 @@
       <div class="slide"></div>
       <!---------------------------->
       <div class="recently-event padding-30px align-column-start">
-        <p class="label align-self-start">近期事件</p>
-        <div class="hr"></div>
+        <h1 class="ml6">
+          <span class="text-wrapper">
+            <span class="letters label">近期事件 New post</span>
+          </span>
+        </h1>
+        <div class="hr margin-top-bottom"></div>
         <div class="events-container align-column-center">
           <div
-            class="event align-row-center padding-30px margin-top-bottom-5px"
+            class="event align-row-center padding-30px invisible"
             v-for="(item, index) in events"
             :key="index"
           >
@@ -145,7 +149,11 @@
       </div>
       <!---------------------------->
       <div class="gallery align-column-center padding-30px">
-        <p class="label align-self-end">藝術空間</p>
+        <h1 class="ml6_1 align-self-end">
+          <span class="text-wrapper">
+            <span class="letters label">藝術空間 Gallery</span>
+          </span>
+        </h1>
         <div class="hr"></div>
         <div class="gallery-container align-row-center">
           <div
@@ -179,7 +187,7 @@
               <div class="flip-card-back padding-15px">
                 <p class="margin-top-bottom">簡介</p>
                 <div class="hr"></div>
-                <p class="font-14px margin-5px-8px">
+                <p class="margin-5px-8px font-14px">
                   {{ item.description }}
                 </p>
               </div>
@@ -204,6 +212,23 @@ body {
   color: rgba(255, 255, 255, 0.7);
   line-height: 24px;
   letter-spacing: 3px;
+}
+.ml6,
+.ml6_1 {
+  position: relative;
+}
+
+.text-wrapper {
+  position: relative;
+  display: inline-block;
+  padding-top: 0.2em;
+  padding-right: 0.05em;
+  padding-bottom: 0.1em;
+  overflow: hidden;
+}
+
+.letter {
+  display: inline-block;
 }
 a {
   color: rgba(255, 255, 255, 0.6);
@@ -243,6 +268,7 @@ a:hover {
   height: 500px;
   overflow-y: scroll;
   scrollbar-width: none;
+  border-radius: 10px;
 }
 .events-container::-webkit-scrollbar {
   display: none;
@@ -482,7 +508,7 @@ a:hover {
 
 <script>
 export default {
-  name: "Home",
+  name: "Page1",
   data() {
     return {
       events: [
@@ -493,8 +519,7 @@ export default {
         },
         {
           date: "2020-12-24",
-          description:
-            "國立清華大學 藝術與設計學系(創作組) 徵聘專任教師1名，應聘者應於110年2月1日（星期一）止，以掛號寄達",
+          description: "國立清華大學 藝術與設計學系(創作組) 徵聘專任教師1名",
           link: "https://art.nthu.edu.tw/?p=2020",
         },
         {
@@ -504,14 +529,12 @@ export default {
         },
         {
           date: "2020-12-08",
-          description:
-            "國立清華大學 藝術與設計學系(設計組) 徵聘專任教師1名，應聘者應於110年2月1日（星期一）止，以掛號寄達",
+          description: "國立清華大學 藝術與設計學系(設計組) 徵聘專任教師1名",
           link: "https://art.nthu.edu.tw/?p=2017",
         },
         {
           date: "2020-11-27",
-          description:
-            "2020國立清華大學藝術與設計學系研究生論文研討會_報名截止時間：2020年12月2日上午11:59",
+          description: "2020國立清華大學藝術與設計學系研究生論文研討會",
           link: "https://art.nthu.edu.tw/?p=2006",
         },
         {
@@ -550,12 +573,89 @@ export default {
             "記憶會隨時間而褪色，只有把記憶化為無限的想像，才能化瞬間為永恆，因而有了〜永恆的瞬間。由於萬物都有靈性，各式精靈的影像常常出現，所見所想漫無邊際，創作的靈感不須細想，自由放空心隨意走，運用自然審美觀，讓佐品表達出自己喜歡的樣貌，於是形成了「放空表現技法」。由於遠古與現代的時空重叠，在異次元空間的夾縫中，物種壓縮形變往往湧現異於想像的無名，與萬物共榮共生，用簡單的素材表現虛實變換的重疊空間，運用各種抽象面塊擠壓扭曲排列組合，於是有了各式各樣的樹木精靈、岩石精靈以及多面向精靈等等，讓我們的世界處處充滿驚喜，相信未來會有更奇妙的作品等著您我去創造。",
         },
       ],
+      isPlaying: false,
+      isPlaying1: false,
+      event_below: false,
     };
   },
   created() {
     document.addEventListener("scroll", this.eventScroll);
+    window.scrollTo(0, 0);
   },
 
-  methods: {},
+  methods: {
+    eventScroll() {
+      this.fadeIn();
+      if (window.scrollY > 100 && !this.isPlaying) {
+        this.isPlaying = true;
+        var textWrapper = document.querySelector(".ml6 .letters");
+        textWrapper.innerHTML = textWrapper.textContent.replace(
+          /\S/g,
+          "<span class='letter'>$&</span>"
+        );
+        this.$anime
+          .timeline({ loop: false })
+          .add({
+            targets: ".ml6 .letter",
+            translateY: ["1.1em", 0],
+            translateZ: 0,
+            duration: 1500,
+            delay: (el, i) => 50 * i,
+          })
+          .add({
+            targets: ".ml6",
+            opacity: 1,
+            duration: 1000,
+            easing: "easeOutExpo",
+            delay: 1000,
+          });
+      } else if (window.scrollY < 10) {
+        this.isPlaying = false;
+      }
+
+      if (window.scrollY >= 600 && !this.isPlaying1) {
+        this.isPlaying1 = true;
+        var textWrapper1 = document.querySelector(".ml6_1 .letters");
+        textWrapper1.innerHTML = textWrapper1.textContent.replace(
+          /\S/g,
+          "<span class='letter'>$&</span>"
+        );
+        this.$anime
+          .timeline({ loop: false })
+          .add({
+            targets: ".ml6_1 .letter",
+            translateY: ["1.1em", 0],
+            translateZ: 0,
+            duration: 1500,
+            delay: (el, i) => 50 * i,
+          })
+          .add({
+            targets: ".ml6_1",
+            opacity: 1,
+            duration: 1000,
+            easing: "easeOutExpo",
+            delay: 1000,
+          });
+      } else if (window.scrollY < 600) {
+        this.isPlaying1 = false;
+      }
+    },
+    fadeIn() {
+      var events = document.getElementsByClassName("event");
+      if (window.scrollY >= 100 && !this.event_below) {
+        events.forEach((element) => {
+          element.classList.remove("invisible");
+          element.classList.add("fade-in");
+        });
+        this.event_below = true;
+      } else if (window.scrollY < 10) {
+        events.forEach((element) => {
+          element.classList.add("invisible");
+          element.classList.remove("fade-in");
+        });
+        this.event_below = false;
+      }
+    },
+  },
 };
 </script>

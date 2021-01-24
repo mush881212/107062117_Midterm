@@ -1,5 +1,5 @@
 <template>
-  <div class="home align-column-center">
+  <div class="page2 align-column-center">
     <nav
       class="navbar navbar-expand-lg navbar-dark fixed-top font-14px"
       style="background-color: #14072f"
@@ -138,11 +138,15 @@
       <div class="slide"></div>
       <!------------------------------->
       <div class="recently-event padding-30px align-column-start">
-        <p class="label">近期事件</p>
+        <h1 class="ml6">
+          <span class="text-wrapper">
+            <span class="letters label">近期事件 New post</span>
+          </span>
+        </h1>
         <div class="hr margin-top-bottom"></div>
         <div class="events-container align-row-center">
           <div
-            class="event align-row-center padding-30px"
+            class="event align-row-center padding-30px invisible"
             v-for="(item, index) in events"
             :key="index"
           >
@@ -171,6 +175,23 @@ body {
   line-height: 24px;
   letter-spacing: 3px;
 }
+.ml6 {
+  position: relative;
+}
+
+.ml6 .text-wrapper {
+  position: relative;
+  display: inline-block;
+  padding-top: 0.2em;
+  padding-right: 0.05em;
+  padding-bottom: 0.1em;
+  overflow: hidden;
+}
+
+.ml6 .letter {
+  display: inline-block;
+}
+
 a {
   color: rgba(255, 255, 255, 0.6);
   text-decoration: none;
@@ -311,6 +332,9 @@ a:hover {
   animation: slide-down 1s;
   transition: all 0.2s ease-out;
 }
+.invisible {
+  opacity: 0;
+}
 
 .translate {
   -webkit-transform: translateX(-100%);
@@ -385,7 +409,7 @@ a:hover {
 
 <script>
 export default {
-  name: "Home",
+  name: "Page2",
   data() {
     return {
       events: [
@@ -431,10 +455,61 @@ export default {
           link: "https://art.nthu.edu.tw/?p=1971",
         },
       ],
+      isPlaying: false,
+      event_below: false,
     };
   },
-  created() {},
+  created() {
+    document.addEventListener("scroll", this.eventScroll);
+    window.scrollTo(0, 0);
+  },
 
-  methods: {},
+  methods: {
+    eventScroll() {
+      this.fadeIn();
+      if (window.scrollY > 100 && !this.isPlaying) {
+        this.isPlaying = true;
+        var textWrapper = document.querySelector(".ml6 .letters");
+        textWrapper.innerHTML = textWrapper.textContent.replace(
+          /\S/g,
+          "<span class='letter'>$&</span>"
+        );
+        this.$anime
+          .timeline({ loop: false })
+          .add({
+            targets: ".ml6 .letter",
+            translateY: ["1.1em", 0],
+            translateZ: 0,
+            duration: 1500,
+            delay: (el, i) => 50 * i,
+          })
+          .add({
+            targets: ".ml6",
+            opacity: 1,
+            duration: 1000,
+            easing: "easeOutExpo",
+            delay: 1000,
+          });
+      } else if (window.scrollY < 10) {
+        this.isPlaying = false;
+      }
+    },
+    fadeIn() {
+      var events = document.getElementsByClassName("event");
+      if (window.scrollY >= 100 && !this.event_below) {
+        events.forEach((element) => {
+          element.classList.remove("invisible");
+          element.classList.add("fade-in");
+        });
+        this.event_below = true;
+      } else if (window.scrollY < 10) {
+        events.forEach((element) => {
+          element.classList.add("invisible");
+          element.classList.remove("fade-in");
+        });
+        this.event_below = false;
+      }
+    },
+  },
 };
 </script>

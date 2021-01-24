@@ -1,5 +1,5 @@
 <template>
-  <div class="home align-column-center">
+  <div class="page4 align-column-center">
     <nav
       class="navbar navbar-expand-lg navbar-dark fixed-top font-14px"
       style="background-color: #14072f"
@@ -125,8 +125,12 @@
       <div
         class="recently-event padding-30px align-column-start align-self-start"
       >
-        <p class="label">近期事件</p>
-        <div class="hr"></div>
+        <h1 class="ml6">
+          <span class="text-wrapper">
+            <span class="letters label">近期事件 New post</span>
+          </span>
+        </h1>
+        <div class="hr margin-top-bottom"></div>
         <div class="events-container align-row-center">
           <div
             class="events margin align-column-center"
@@ -151,7 +155,9 @@
     </div>
     <div class="footer align-column-center padding-15px">
       <div class="copyright align-column-center margin-top-bottom">
-        <p>國立清華大學跨院碩「藝術與創新科技」組 Tel:+886-3-5715131 #78802</p>
+        <p>
+          國立清華大學跨院碩「藝術與創新科技」組 | Tel:+886-3-5715131 #78802
+        </p>
         <p>2020 Copyright ©</p>
       </div>
     </div>
@@ -206,6 +212,7 @@ a:hover {
   height: 500px;
   overflow-y: scroll;
   scrollbar-width: none;
+  border-radius: 10px;
 }
 .events-container::-webkit-scrollbar {
   display: none;
@@ -213,7 +220,6 @@ a:hover {
 .events {
   background: rgba(29, 35, 65, 0.6);
   box-sizing: border-box;
-  border-radius: 10px;
   width: 250px;
   height: 250px;
 }
@@ -349,24 +355,6 @@ a:hover {
   flex-direction: row;
   justify-content: center;
 }
-.red:hover {
-  background-color: rgba(250, 119, 119, 0.5);
-}
-.orange:hover {
-  background-color: rgba(250, 182, 119, 0.5);
-}
-.yellow:hover {
-  background-color: rgba(247, 237, 150, 0.5);
-}
-.green:hover {
-  background-color: rgba(119, 250, 189, 0.5);
-}
-.blue:hover {
-  background-color: rgba(119, 235, 250, 0.5);
-}
-.purple:hover {
-  background-color: rgba(121, 119, 250, 0.5);
-}
 
 .fade-in {
   animation: fade-in 1s;
@@ -457,7 +445,7 @@ a:hover {
 
 <script>
 export default {
-  name: "Home",
+  name: "Page4",
   data() {
     return {
       events: [
@@ -516,12 +504,61 @@ export default {
           link: "https://art.nthu.edu.tw/?p=1971",
         },
       ],
+      isPlaying: false,
+      event_below: false,
     };
   },
   created() {
     document.addEventListener("scroll", this.eventScroll);
+    window.scrollTo(0, 0);
   },
 
-  methods: {},
+  methods: {
+    eventScroll() {
+      this.fadeIn();
+      if (window.scrollY > 100 && !this.isPlaying) {
+        this.isPlaying = true;
+        var textWrapper = document.querySelector(".ml6 .letters");
+        textWrapper.innerHTML = textWrapper.textContent.replace(
+          /\S/g,
+          "<span class='letter'>$&</span>"
+        );
+        this.$anime
+          .timeline({ loop: false })
+          .add({
+            targets: ".ml6 .letter",
+            translateY: ["1.1em", 0],
+            translateZ: 0,
+            duration: 1500,
+            delay: (el, i) => 50 * i,
+          })
+          .add({
+            targets: ".ml6",
+            opacity: 1,
+            duration: 1000,
+            easing: "easeOutExpo",
+            delay: 1000,
+          });
+      } else if (window.scrollY < 10) {
+        this.isPlaying = false;
+      }
+    },
+    fadeIn() {
+      var events = document.getElementsByClassName("events");
+      if (window.scrollY >= 100 && !this.event_below) {
+        events.forEach((element) => {
+          element.classList.remove("invisible");
+          element.classList.add("fade-in");
+        });
+        this.event_below = true;
+      } else if (window.scrollY < 10) {
+        events.forEach((element) => {
+          element.classList.add("invisible");
+          element.classList.remove("fade-in");
+        });
+        this.event_below = false;
+      }
+    },
+  },
 };
 </script>

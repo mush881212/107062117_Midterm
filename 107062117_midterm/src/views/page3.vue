@@ -1,5 +1,5 @@
 <template>
-  <div class="home align-column-center">
+  <div class="page3 align-column-center">
     <nav
       class="navbar navbar-expand-lg navbar-dark fixed-top font-14px"
       style="background-color: #14072f"
@@ -133,7 +133,11 @@
       <div
         class="recent-event padding-30px align-column-start align-self-start"
       >
-        <p class="label">近期事件</p>
+        <h1 class="ml6">
+          <span class="text-wrapper">
+            <span class="letters label">近期事件 New post</span>
+          </span>
+        </h1>
         <div class="hr"></div>
         <div class="events-container align-row-center">
           <div
@@ -154,16 +158,26 @@
         </div>
       </div>
       <div class="intro padding-30px align-column-center">
-        <p class="label align-self-end">學士班簡介</p>
+        <h1 class="ml6_1 align-self-end">
+          <span class="text-wrapper">
+            <span class="letters label">簡介 Introduction</span>
+          </span>
+        </h1>
         <div class="hr"></div>
-        <div class="intro-item margin padding-30px align-column-center">
+        <div
+          class="intro-item margin padding-30px align-column-center invisible"
+          id="intro-item-1"
+        >
           <p class="label">學士班特色</p>
           <div class="hr"></div>
           <p class="font-14px margin-top-bottom-5px">
             清華是國際頂尖科技大學，加上合校後的藝術學院，具備發展「科技藝術」的卓越條件。我們號召臺灣年輕一代的科技藝術學者專家，我們規劃有科技藝術跨域特別課程，並與業界合作推出創意跨域專題。你，不需猶豫，歡迎你的加入！
           </p>
         </div>
-        <div class="intro-item margin padding-30px align-column-center">
+        <div
+          class="intro-item margin padding-30px align-column-center invisible"
+          id="intro-item-2"
+        >
           <p class="label">核心能力</p>
           <div class="hr"></div>
           <p class="font-14px margin-top-bottom-5px">
@@ -175,7 +189,10 @@
             資訊掌握與科技應用能力<br />
           </p>
         </div>
-        <div class="intro-item margin padding-30px align-column-center">
+        <div
+          class="intro-item margin padding-30px align-column-center invisible"
+          id="intro-item-3"
+        >
           <p class="label">學士班簡介</p>
           <div class="hr"></div>
           <p class="font-14px margin-top-bottom-5px">
@@ -214,6 +231,23 @@ body {
   color: rgba(255, 255, 255, 0.7);
   line-height: 24px;
   letter-spacing: 3px;
+}
+.ml6,
+.ml6_1 {
+  position: relative;
+}
+
+.text-wrapper {
+  position: relative;
+  display: inline-block;
+  padding-top: 0.2em;
+  padding-right: 0.05em;
+  padding-bottom: 0.1em;
+  overflow: hidden;
+}
+
+.letter {
+  display: inline-block;
 }
 a {
   color: rgba(255, 255, 255, 0.6);
@@ -259,7 +293,7 @@ a:hover {
 .intro-item:hover {
   transform: scale(1.05);
   transition: all 0.2s ease-out;
-  background: rgba(29, 35, 65, 0.7);
+  background: rgba(29, 35, 65, 0.5);
 }
 
 .recent-event {
@@ -387,6 +421,9 @@ a:hover {
 .fade-in {
   animation: fade-in 1s;
 }
+.fade-down {
+  animation: fade-down 1s;
+}
 .slide-in {
   animation: slide-in 1s;
 }
@@ -469,11 +506,23 @@ a:hover {
     transform: translateY(0%);
   }
 }
+@keyframes fade-down {
+  0% {
+    opacity: 0.2;
+    -webkit-transform: translateY(-10%);
+    transform: translateY(-10%);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0%);
+    transform: translateY(0%);
+  }
+}
 </style>
 
 <script>
 export default {
-  name: "Home",
+  name: "Page3",
   data() {
     return {
       events: [
@@ -520,12 +569,125 @@ export default {
           link: "https://art.nthu.edu.tw/?p=1971",
         },
       ],
+      event_below: false,
+      item_below1: false,
+      item_below2: false,
+      item_below3: false,
+      isPlaying: false,
+      isPlaying1: false,
     };
   },
   created() {
     document.addEventListener("scroll", this.eventScroll);
+    window.scrollTo(0, 0);
   },
 
-  methods: {},
+  methods: {
+    eventScroll() {
+      this.fadeIn();
+      var item1 = document.getElementById("intro-item-1");
+      var item2 = document.getElementById("intro-item-2");
+      var item3 = document.getElementById("intro-item-3");
+      if (window.scrollY >= 1000) {
+        this.fadeOut(item3);
+        this.item_below3 = true;
+      } else if (window.scrollY < 1000) {
+        this.removeFadeOut(item3);
+        this.item_below3 = false;
+      }
+      if (window.scrollY >= 800) {
+        this.fadeOut(item2);
+        this.item_below2 = true;
+      } else if (window.scrollY < 800) {
+        this.removeFadeOut(item2);
+        this.item_below2 = false;
+      }
+      if (window.scrollY >= 600) {
+        this.fadeOut(item1);
+        this.item_below1 = true;
+      } else if (window.scrollY < 600) {
+        this.removeFadeOut(item1);
+        this.item_below1 = false;
+      }
+      /**************************** */
+      if (window.scrollY > 100 && !this.isPlaying) {
+        this.isPlaying = true;
+        var textWrapper = document.querySelector(".ml6 .letters");
+        textWrapper.innerHTML = textWrapper.textContent.replace(
+          /\S/g,
+          "<span class='letter'>$&</span>"
+        );
+        this.$anime
+          .timeline({ loop: false })
+          .add({
+            targets: ".ml6 .letter",
+            translateY: ["1.1em", 0],
+            translateZ: 0,
+            duration: 1500,
+            delay: (el, i) => 50 * i,
+          })
+          .add({
+            targets: ".ml6",
+            opacity: 1,
+            duration: 1000,
+            easing: "easeOutExpo",
+            delay: 1000,
+          });
+      } else if (window.scrollY < 10) {
+        this.isPlaying = false;
+      }
+
+      if (window.scrollY >= 600 && !this.isPlaying1) {
+        this.isPlaying1 = true;
+        var textWrapper1 = document.querySelector(".ml6_1 .letters");
+        textWrapper1.innerHTML = textWrapper1.textContent.replace(
+          /\S/g,
+          "<span class='letter'>$&</span>"
+        );
+        this.$anime
+          .timeline({ loop: false })
+          .add({
+            targets: ".ml6_1 .letter",
+            translateY: ["1.1em", 0],
+            translateZ: 0,
+            duration: 1500,
+            delay: (el, i) => 50 * i,
+          })
+          .add({
+            targets: ".ml6_1",
+            opacity: 1,
+            duration: 1000,
+            easing: "easeOutExpo",
+            delay: 1000,
+          });
+      } else if (window.scrollY < 600) {
+        this.isPlaying1 = false;
+      }
+    },
+    fadeIn() {
+      var events = document.getElementsByClassName("events");
+      if (window.scrollY >= 100 && !this.event_below) {
+        events.forEach((element) => {
+          element.classList.remove("invisible");
+          element.classList.add("fade-in");
+        });
+        this.event_below = true;
+      } else if (window.scrollY < 10) {
+        events.forEach((element) => {
+          element.classList.add("invisible");
+          element.classList.remove("fade-in");
+        });
+        this.event_below = false;
+      }
+    },
+    fadeOut(item) {
+      item.classList.remove("invisible");
+      item.classList.add("fade-down");
+    },
+    removeFadeOut(item) {
+      item.classList.add("invisible");
+      item.classList.remove("fade-down");
+    },
+  },
 };
 </script>
