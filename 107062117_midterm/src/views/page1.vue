@@ -151,16 +151,20 @@
                 v-bind:alt="item.name"
               />
             </vue-glide-slide>
-            <template slot="control" class="button-container">
-              <button class="button" data-glide-dir="<">prev</button>
-              <button class="button" data-glide-dir=">">next</button>
+            <template slot="control">
+              <button class="button margin-left-right" data-glide-dir="<">
+                prev
+              </button>
+              <button class="button margin-left-right" data-glide-dir=">">
+                next
+              </button>
             </template>
           </vue-glide>
         </div>
       </div>
       <!---------------------------->
       <div class="recently-event padding-30px align-column-start">
-        <h1 class="ml6">
+        <h1 class="ml6 align-self-end">
           <span class="text-wrapper">
             <span class="letters label">近期事件 New post</span>
           </span>
@@ -183,7 +187,7 @@
       </div>
       <!---------------------------->
       <div class="gallery align-column-center padding-30px">
-        <h1 class="ml6_1 align-self-end">
+        <h1 class="ml6_1 align-self-start">
           <span class="text-wrapper">
             <span class="letters label">藝術空間 Art area</span>
           </span>
@@ -247,23 +251,34 @@ body {
   line-height: 24px;
   letter-spacing: 3px;
 }
-.button-container .button {
-  background-color: rgba(70, 72, 167, 1);
+.button {
+  background: linear-gradient(
+    0deg,
+    rgba(170, 169, 245, 0.6) 0%,
+    rgba(89, 78, 242, 0.6) 100%
+  );
   color: #fff;
   border: 0px;
   border-radius: 10px;
   text-align: center;
   width: 100px;
   height: 40px;
-  margin: 0px 20px 0px 20px;
-  border-bottom: 5px solid rgba(70, 89, 182, 0.8);
+  border-bottom: 5px solid rgba(109, 130, 233, 0.8);
 }
-.button-container .button:hover {
+.button:hover {
   animation: button-down 0.3s;
   transition: all 0.1s ease-out;
   -webkit-transform: translateY(10%);
   transform: translateY(10%);
   border-bottom: 0px solid rgba(70, 89, 182, 0.8);
+  background-image: linear-gradient(
+    to right top,
+    #1e6ce2,
+    #4473e9,
+    #5c7bef,
+    #7183f6,
+    #838bfc
+  );
 }
 .ml6,
 .ml6_1,
@@ -385,10 +400,6 @@ a:hover {
   align-self: flex-start;
 }
 
-.others {
-  width: 60%;
-  flex-direction: row-reverse;
-}
 .copyright {
   width: 100%;
   color: rgba(255, 255, 255, 0.6);
@@ -435,7 +446,7 @@ a:hover {
 }
 .img-80 {
   width: 60%;
-  max-height: 90%;
+  max-height: 70%;
 }
 .slide-container {
   width: 100%;
@@ -722,7 +733,7 @@ export default {
       } else if (window.scrollY < 10) {
         this.isPlaying2 = false;
       }
-      if (window.scrollY > 600 && !this.isPlaying) {
+      if (window.scrollY > 800 && !this.isPlaying) {
         this.isPlaying = true;
         var textWrapper = document.querySelector(".ml6 .letters");
         textWrapper.innerHTML = textWrapper.textContent.replace(
@@ -745,7 +756,7 @@ export default {
             easing: "easeOutExpo",
             delay: 1000,
           });
-      } else if (window.scrollY < 600) {
+      } else if (window.scrollY < 800) {
         this.isPlaying = false;
       }
 
@@ -778,13 +789,13 @@ export default {
     },
     fadeIn() {
       var events = document.getElementsByClassName("event");
-      if (window.scrollY >= 600 && !this.event_below) {
+      if (window.scrollY >= 800 && !this.event_below) {
         events.forEach((element) => {
           element.classList.remove("invisible");
           element.classList.add("fade-in");
         });
         this.event_below = true;
-      } else if (window.scrollY < 600) {
+      } else if (window.scrollY < 800) {
         events.forEach((element) => {
           element.classList.add("invisible");
           element.classList.remove("fade-in");
